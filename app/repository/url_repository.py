@@ -24,3 +24,15 @@ class UrlRepository:
         db.refresh(url)
 
         return url
+
+    def find_by_id(
+        self,
+        db: Session,
+        id: int
+    ) -> Url | None:
+
+        return (
+            db.query(Url)
+            .filter(Url.id == id)
+            .first()
+        )
