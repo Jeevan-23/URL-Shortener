@@ -1,6 +1,7 @@
 from sqlalchemy import String, Integer, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 from datetime import datetime
+from sqlalchemy import BigInteger
 
 from app.database import Base
 
@@ -8,16 +9,16 @@ from app.database import Base
 class Url(Base):
     __tablename__ = "urls"
 
+
     id: Mapped[int] = mapped_column(
-        Integer,
-        primary_key=True,
-        index=True
+        BigInteger,
+        primary_key=True
     )
 
     short_code: Mapped[str] = mapped_column(
         String(10),
         unique=True,
-        nullable=False
+        nullable=True
     )
 
     original_url: Mapped[str] = mapped_column(

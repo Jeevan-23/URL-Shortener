@@ -1,4 +1,4 @@
-BASE62 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+BASE62 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 class Base62Encoder:
@@ -19,6 +19,17 @@ class Base62Encoder:
 
             number //= 62
 
-        encoded.reverse()
+        return "".join(reversed(encoded))
 
-        return "".join(encoded)
+    @staticmethod
+    def decode(value: str) -> int:
+
+        decoded = 0
+
+        for ch in value:
+
+            decoded *= 62
+
+            decoded += BASE62.index(ch)
+
+        return decoded
